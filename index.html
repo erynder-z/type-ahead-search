@@ -5,8 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="style.css" rel="stylesheet" />
+    <script>
+      var exports = {};
+    </script>
+
     <script src="script.js" defer></script>
     <title>type-ahead</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <form class="search-form">
+        <input type="text" class="search" placeholder="City or Postal code" />
+        <ul class="suggestions">
+          <li>Search for a city</li>
+          <li>or postal code</li>
+        </ul>
+      </form>
+    </div>
+  </body>
 </html>
