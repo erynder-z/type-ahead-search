@@ -18,15 +18,18 @@ const displayMatches = (): void => {
       const regex = new RegExp(searchInput?.value, 'gi');
       const cityName = town.place.replace(
         regex,
-        `<span class="hl">${searchInput?.value}</span>`
+        `<span class="hl">${
+          searchInput?.value.charAt(0).toUpperCase() +
+          searchInput?.value.slice(1)
+        }</span>`
       );
-      const stateName = town.zipcode.replace(
+      const zipCode = town.zipcode.replace(
         regex,
         `<span class="hl">${searchInput?.value}</span>`
       );
       return `
       <li>
-        <span class="name">${cityName}, ${stateName}</span>
+        <span class="name">${cityName}, ${zipCode}</span>
         <span class="community">${town.community}</span>
       </li>
     `;
