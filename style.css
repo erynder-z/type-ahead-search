@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #373b41;
+  color: #c5c8c6;
+  height: 100vh;
+  padding: 2rem;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container > h1 {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  background-color: #c5c8c6;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.search {
+  height: 2rem;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  gap: 1rem;
+}
+
+ul {
+  position: relative;
+  list-style: none;
+}
+
+li::before {
+  content: '➭';
+  position: absolute;
+  left: 0;
+  color: #cc6666;
+}
+
+@media only screen and (max-width: 768px) {
+  .suggestions {
+    width: 100%;
+  }
+}
