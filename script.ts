@@ -1,8 +1,29 @@
 const cities: any = [];
 
-fetch('./DE/zipcodes.de.json')
-  .then((blob) => blob.json())
-  .then((data) => cities.push(...data));
+const fetchData = (mode: string): void => {
+  cities.length = 0;
+  switch (mode) {
+    case 'AT':
+      fetch('./AT/zipcodes.at.json')
+        .then((blob) => blob.json())
+        .then((data) => cities.push(...data));
+      break;
+
+    case 'DE':
+      fetch('./DE/zipcodes.de.json')
+        .then((blob) => blob.json())
+        .then((data) => cities.push(...data));
+      break;
+
+    case 'CH':
+      fetch('./CH/zipcodes.ch.json')
+        .then((blob) => blob.json())
+        .then((data) => cities.push(...data));
+      break;
+    default:
+      break;
+  }
+};
 
 const findMatches = (wordToMatch: string | RegExp, cities: any[]): any[] => {
   return cities.filter((town: { place: string; zipcode: string }) => {
@@ -38,9 +59,20 @@ const displayMatches = (): void => {
   suggestions!.innerHTML = html;
 };
 
+const selectElement = <HTMLInputElement>document.getElementById('countryList');
 const searchInput: HTMLFormElement | null = document.querySelector('.search');
 const suggestions: HTMLLIElement | null =
   document.querySelector('.suggestions');
+const countrySelector: HTMLElement = document.getElementById('countryList')!;
 
 searchInput?.addEventListener('change', displayMatches);
 searchInput?.addEventListener('keyup', displayMatches);
+countrySelector.addEventListener(
+  'change',
+  () => {
+    fetchData(selectElement.value);
+  },
+  false
+);
+
+fetchData(selectElement.value);
